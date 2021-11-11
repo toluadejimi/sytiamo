@@ -21,7 +21,7 @@
 	</nav>
 </div>
 
-<a class="nav-link" href="{{ route('transfer_requests.index') }}">
+{{--  <a class="nav-link" href="{{ route('transfer_requests.index') }}">
 	<div class="sb-nav-link-icon"><i class="icofont-bank-transfer-alt"></i></div>
 	{{ _lang('Transfer Request') }}
 	{!! xss_clean(request_count('wire_transfer_requests',true)) !!}
@@ -46,8 +46,8 @@
 	{{ _lang('Withdraw') }}
 	{!! xss_clean(request_count('withdraw_requests',true)) !!}
 	<div class="sb-sidenav-collapse-arrow"><i class="icofont-rounded-down"></i></div>
-</a>
-<div class="collapse" id="withdraw" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+</a>  --}}
+{{--  <div class="collapse" id="withdraw" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('withdraw_requests.index') }}">{{ _lang('Withdraw Request') }}</a>
 		<a class="nav-link" href="{{ route('withdraw.create') }}">{{ _lang('Make Withdraw') }}</a>
@@ -58,7 +58,7 @@
 <a class="nav-link" href="{{ route('transactions.index') }}">
 	<div class="sb-nav-link-icon"><i class="icofont-listing-number"></i></div>
 	{{ _lang('All Transactions') }}
-</a>
+</a>  --}}
 
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#loans" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-dollar-minus"></i></div>
@@ -75,7 +75,7 @@
 	</nav>
 </div>
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fdr" aria-expanded="false" aria-controls="collapseLayouts">
+{{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fdr" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-money"></i></div>
 	{{ _lang('Fixed Deposit') }}
 	{!! xss_clean(request_count('fdr_requests',true)) !!}
@@ -87,19 +87,19 @@
 		<a class="nav-link" href="{{ route('fixed_deposits.index') }}">{{ _lang('All FDR') }}</a>
 		<a class="nav-link" href="{{ route('fdr_plans.index') }}">{{ _lang('FDR Packages') }}</a>
 	</nav>
-</div>
+</div>  --}}
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gift_card" aria-expanded="false" aria-controls="collapseLayouts">
+{{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gift_card" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-gift"></i></div>
 	{{ _lang('Gift Cards') }}
 	<div class="sb-sidenav-collapse-arrow"><i class="icofont-rounded-down"></i></div>
-</a>
-<div class="collapse" id="gift_card" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+</a>  --}}
+{{--  <div class="collapse" id="gift_card" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('gift_cards.index') }}">{{ _lang('Gift Cards') }}</a>
 		<a class="nav-link" href="{{ route('gift_cards.filter','used_gift_card') }}">{{ _lang('Used Gift Card') }}</a>
 	</nav>
-</div>
+</div>  --}}
 
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#tickets" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-live-support"></i></div>
@@ -123,10 +123,10 @@
 	{{ _lang('Branches') }}
 </a>
 
-<a class="nav-link" href="{{ route('other_banks.index') }}">
+{{--  <a class="nav-link" href="{{ route('other_banks.index') }}">
 	<div class="sb-nav-link-icon"><i class="icofont-bank"></i></div>
 	{{ _lang('Other Banks') }}
-</a>
+</a>  --}}
 
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#systemUsers" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-users-alt-4"></i></div>
@@ -146,11 +146,11 @@
 	{{ _lang('Currency List') }}
 </a>
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#deposit_settings" aria-expanded="false" aria-controls="collapseLayouts">
+{{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#deposit_settings" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-credit-card"></i></div>
 	{{ _lang('Transactions Settings') }}
 	<div class="sb-sidenav-collapse-arrow"><i class="icofont-rounded-down"></i></div>
-</a>
+</a>  --}}
 <div class="collapse" id="deposit_settings" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('payment_gateways.index') }}">{{ _lang('Deposit Gateways') }}</a>
@@ -160,11 +160,11 @@
 	</nav>
 </div>
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#websiteManagement" aria-expanded="false" aria-controls="collapseLayouts">
+{{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#websiteManagement" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-monitor"></i></div>
 	{{ _lang('Website Management') }}
 	<div class="sb-sidenav-collapse-arrow"><i class="icofont-rounded-down"></i></div>
-</a>
+</a>  --}}
 <div class="collapse" id="websiteManagement" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('services.index') }}">{{ _lang('Services') }}</a>
@@ -191,11 +191,11 @@
 	</nav>
 </div>
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#languages" aria-expanded="false" aria-controls="collapseLayouts">
+{{--  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#languages" aria-expanded="false" aria-controls="collapseLayouts">
 	<div class="sb-nav-link-icon"><i class="icofont-world"></i></div>
 	{{ _lang('Languages') }}
 	<div class="sb-sidenav-collapse-arrow"><i class="icofont-rounded-down"></i></div>
-</a>
+</a>  --}}
 <div class="collapse" id="languages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('languages.index') }}">{{ _lang('All Language') }}</a>
