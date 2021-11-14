@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Apis\UserApiController;
-use App\Http\Controllers\SystemUserController;
+use App\Http\Controllers\Apis\LoginApiController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/userapi', Apis\UserApiController::class);
 Route::get('/userapi/search/{name}', [UserApiController::class, 'search']);
-// Route::post('/userapi', [UserApiController::class, 'store']);
+Route::post('/login', [LoginApiController::class, 'login']);
 // Route::get('/api', [ApiController::class, 'transaction']);
 // Route::post('/api', [ApiController::class, 'index']);
 
