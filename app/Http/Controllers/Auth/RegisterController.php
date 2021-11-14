@@ -62,7 +62,7 @@ class RegisterController extends Controller {
             'g-recaptcha-response.recaptchav3' => _lang('Recaptcha error!'),
         ]);
     }
-
+ 
     /**
      * Create a new user instance after a valid registration.
      *

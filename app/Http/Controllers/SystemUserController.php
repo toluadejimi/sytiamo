@@ -86,7 +86,9 @@ class SystemUserController extends Controller {
         $user->profile_picture   = $profile_picture;
         $user->email_verified_at = date('Y-m-d H:i:s');
         $user->password          = Hash::make($request->password);
-
+        // $token = Str::random(60);
+        // //$user = User::find($user_type, 'admin');
+        // $user->api_token = $request->$token;
         $user->save();
 
         //Prefix Output
@@ -184,7 +186,7 @@ class SystemUserController extends Controller {
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
-
+     
         $user->save();
 
         //Prefix Output

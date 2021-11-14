@@ -62,6 +62,13 @@
                             </div>
 
                             <div class="form-group row">
+                                <label class="col-xl-3 col-form-label">{{ _lang('Api Token') }}</label>
+                                <div class="col-xl-9">
+                                    <input type="text" class="form-control" name="api_token" value="{{$token}}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label class="col-xl-3 col-form-label">{{ _lang('Status') }}</label>
                                 <div class="col-xl-9">
                                     <select class="form-control auto-select" data-selected="{{ $user->status }}"
