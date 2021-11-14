@@ -63,6 +63,13 @@
 			</div>
 		</div>
 
+		<div class="form-group row">
+			<label class="col-xl-3 col-form-label">{{ _lang('Api Token') }}</label>
+			<div class="col-xl-9">
+				<input type="text" class="form-control" name="api_token">
+			</div>
+		</div>
+
 		<div class="form-group">
 			<div class="col-md-12">
 				<button type="submit" class="btn btn-primary"><i class="icofont-check-circled"></i> {{ _lang('Update') }}</button>

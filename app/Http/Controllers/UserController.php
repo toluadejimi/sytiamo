@@ -30,7 +30,8 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index($status = 'all') {
-        return view('backend.user.list', compact('status'));
+        $users = User::all();
+        return view('backend.user.list', compact('status','users'));
     }
 
     public function get_table_data($status = 'all') {
@@ -108,13 +109,33 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
+        // $url = 'https://api.paystack.co/bank/resolve_bvn/'.$user->bvn;
+
+        //   $ch = curl_init();
+        //   curl_setopt($ch, CURLOPT_URL, $url);
+        //   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //   curl_setopt(
+        //     $ch, CURLOPT_HTTPHEADER, [
+        //       'Authorization: Bearer sk_test_da5d641bf00am6413a188c2b383c4b263823e195a5'
+        //     ]
+        //   );
+        //   $request = curl_exec($ch);
+        //   curl_close($ch);
+
+        //   if ($request) {
+        //     $result = json_decode($request, true);
+        //     return $result;
+        //   }
+
+
         $validator = Validator::make($request->all(), [
             'name'            => 'required|max:255',
             'email'           => 'required|email|unique:users|max:255',
             'branch_id'       => 'required',
             'status'          => 'required',
             'profile_picture' => 'nullable|image',
-            'password'        => 'required|min:6',
+            'password'        => 'nullable|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -137,15 +158,25 @@ class UserController extends Controller {
         $user                    = new User();
         $user->name              = $request->input('name');
         $user->email             = $request->input('email');
-        $user->country_code      = $request->input('country_code');
+        //$user->country_code      = $request->input('country_code');
         $user->phone             = $request->input('phone');
+        $user->bvn             = $request->input('bvn');
+        $user->address             = $request->input('address');
+        $user->shop_address             = $request->input('shop_address');
+        $user->dob             = $request->input('dob');
         $user->user_type         = 'customer';
         $user->branch_id         = $request->branch_id;
         $user->status            = $request->input('status');
+        $user->gname             = $request->input('gname');
+        $user->gphone             = $request->input('gphone');
+        $user->gaddress             = $request->input('gaddress');
+        $user->gname2            = $request->input('gname2');
+        $user->gphone2             = $request->input('gphone2');
+        $user->gaddress2             = $request->input('gaddress2');
         $user->profile_picture   = $profile_picture;
         $user->email_verified_at = $request->email_verified_at;
         $user->sms_verified_at   = $request->sms_verified_at;
-        $user->password          = Hash::make($request->password);
+        //$user->password          = Hash::make($request->password);
 
         $user->save();
 
