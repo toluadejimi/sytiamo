@@ -44,7 +44,7 @@
 
 		<div class="col-md-6">
 			<div class="form-group">
-				<label class="control-label">{{ _lang('Branch') }}</label>
+				<label class="control-label">{{ _lang('Location') }}</label>
 				<select class="form-control select2 auto-select" data-selected="{{ old('branch_id') }}" name="branch_id" required>
 					<option value="">{{ _lang('Select One') }}</option>
 					{{ create_option('branches','id','name') }}

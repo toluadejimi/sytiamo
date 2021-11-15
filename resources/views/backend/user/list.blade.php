@@ -37,12 +37,67 @@
                             <th>{{ _lang('Name') }}</th>
                             <th>{{ _lang('Email') }}</th>
                             <th>{{ _lang('Phone') }}</th>
-                            <th>{{ _lang('Branch') }}</th>
+                            <th>{{ _lang('Location') }}</th>
                             <th>{{ _lang('Status') }}</th>
                             <th>{{ _lang('Email Verified') }}</th>
                             <th>{{ _lang('SMS Verified') }}</th>
                             <th class="text-center">{{ _lang('Action') }}</th>
                         </tr>
+                        @foreach ($users as $user)
+                        <tr>
+                            <td class="text-center">#</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            <td>{{ $user->branch->name }}</td>
+                            <td>
+                                @if ($user->status != 0)
+                                    Active
+                                @else
+                                    In Active
+                                @endif
+                            </td>
+                            <td>
+                                @if ($user->email_verified_at != null)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
+                            <td>
+                                @if ($user->sms_verified_at != null)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <span class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown">
+                                        {{ _lang('Action') }}
+                                    </button>
+                                    <form action="{{ action('UserController@destroy', $user['id']) }}" method="post">
+                                        {{ csrf_field() }}
+                                        <input name="_method" type="hidden" value="DELETE">
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a href="{{ action('UserController@edit', $user['id']) }}"
+                                                data-title="{{ _lang('Update User') }}"
+                                                class="dropdown-item ajax-modal"><i class="icofont-ui-edit"></i>
+                                                {{ _lang('Edit') }}</a>
+                                            <a href="{{ action('UserController@show', $user['id']) }}"
+                                                data-title="{{ _lang('View User') }}"
+                                                class="dropdown-item ajax-modal"><i class="icofont-eye-alt"></i>
+                                                {{ _lang('View') }}</a>
+                                            <button class="btn-remove dropdown-item" type="submit"><i
+                                                    class="icofont-trash"></i> {{ _lang('Delete') }}</button>
+                                        </div>
+                                    </form>
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
                     </thead>
                     <tbody>
                     </tbody>

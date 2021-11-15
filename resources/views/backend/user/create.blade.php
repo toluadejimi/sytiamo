@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-xl-3 col-form-label">{{ _lang('Branch') }}</label>
+                                <label class="col-xl-3 col-form-label">{{ _lang('Location') }}</label>
                                 <div class="col-xl-9">
                                     <select class="form-control auto-select" data-selected="{{ old('branch_id') }}"
                                         name="branch_id" required>
@@ -126,21 +126,37 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <label class="col-xl-3 col-form-label">{{ _lang('BVN') }}</label>
-                                <div class="col-xl-5">
-                                    <input type="text" class="form-control" name="bvn" value="{{ old('bvn') }}" required> 
-                                </div>
-                                <button class="btn btn-primary">Verify</button>
-                            </div>
-
                             <div class="form-group row">
                                 <label class="col-xl-3 col-form-label">{{ _lang('Profile Picture') }}</label>
                                 <div class="col-xl-9">
                                     <input type="file" class="form-control dropify" name="profile_picture">
                                 </div>
                             </div>
+                            <div class="card-header mb-2">
+                                <h4 class="header-title">{{ _lang('Identity Verification') }}</h4>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-form-label">{{ _lang('BVN') }}</label>
+                                <div class="col-xl-5">
+                                    <input type="text" class="form-control" name="bvn" value="{{ old('bvn') }}" > 
+                                </div>
+                                <button class="btn btn-primary">Verify</button>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-form-label">{{ _lang('NIMC Front') }}</label>
+                                <div class="col-xl-9">
+                                    <input type="file" class="form-control dropify" name="profile_picture">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-form-label">{{ _lang('NIMC Back') }}</label>
+                                <div class="col-xl-9">
+                                    <input type="file" class="form-control dropify" name="profile_picture">
+                                </div>
+                            </div>
+
+                            
                             <div class="card-header">
                                 <h4 class="header-title">{{ _lang('Garantor 1 infomation') }}</h4>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\User;
 use App\Models\LoanCollateral;
 use App\Models\LoanPayment;
 use App\Models\LoanRepayment;
@@ -34,7 +35,8 @@ class LoanController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        return view('backend.loan.list');
+        $loans = Loan::all();
+        return view('backend.loan.list',compact('loans'));
     }
 
     public function get_table_data(Request $request) {
@@ -137,7 +139,7 @@ class LoanController extends Controller {
             $attachment = time() . $file->getClientOriginalName();
             $file->move(public_path() . "/uploads/media/", $attachment);
         }
-
+ 
         DB::beginTransaction();
 
         $loan                         = new Loan();

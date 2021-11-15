@@ -155,6 +155,20 @@ class UserController extends Controller {
             $file->move(public_path() . "/uploads/profile/", $profile_picture);
         }
 
+        $nimc_front = "";
+        if ($request->hasfile('nimc_front')) {
+            $file            = $request->file('nimc_front');
+            $nimc_front = time() . $file->getClientOriginalName();
+            $file->move(public_path() . "/uploads/profile/", $nimc_front);
+        }
+
+        $nimc_back = "";
+        if ($request->hasfile('nimc_back')) {
+            $file            = $request->file('nimc_back');
+            $nimc_back = time() . $file->getClientOriginalName();
+            $file->move(public_path() . "/uploads/profile/", $nimc_back);
+        }
+
         $user                    = new User();
         $user->name              = $request->input('name');
         $user->email             = $request->input('email');
@@ -173,6 +187,8 @@ class UserController extends Controller {
         $user->gname2            = $request->input('gname2');
         $user->gphone2             = $request->input('gphone2');
         $user->gaddress2             = $request->input('gaddress2');
+        $user->nimc_front   = $nimc_front;
+        $user->nimc_back   = $nimc_back;
         $user->profile_picture   = $profile_picture;
         $user->email_verified_at = $request->email_verified_at;
         $user->sms_verified_at   = $request->sms_verified_at;
@@ -183,6 +199,9 @@ class UserController extends Controller {
         //Prefix Output
         $user->status          = status($user->status);
         $user->branch_id       = $user->branch->name;
+
+        // $user->nimc_front = '<img src="' . nimc_front($user->nimc_front) . '" class="thumb-sm img-thumbnail">';
+        // $user->nimc_back = '<img src="' . nimc_back($user->nimc_back) . '" class="thumb-sm img-thumbnail">';
         $user->profile_picture = '<img src="' . profile_picture($user->profile_picture) . '" class="thumb-sm img-thumbnail">';
 
         if (!$request->ajax()) {

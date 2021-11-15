@@ -29,6 +29,72 @@
 							<th>{{ _lang('Status') }}</th>
 							<th class="text-center">{{ _lang('Action') }}</th>
 						</tr>
+						@foreach ($loans as $loan)
+                        <tr>
+                            
+                            <td>{{ $loan->id }}</td>
+                            <td>
+								@if ($loan->loan_product_id == '1')
+									Student Loan
+								@elseif($loan->loan_product_id == '2')
+									Business Loan
+								@elseif($loan->loan_product_id == '3')
+									Enterprise Loan
+								@endif
+							</td>
+                            <td>
+                               
+                                {{ $loan->borrower_id }}
+							</td>
+                            {{-- <td>{{ $loan->branch->name }}</td> --}}
+                            {{-- <td>
+                                @if ($loan->status != 0)
+                                    Active
+                                @else
+                                    In Active
+                                @endif
+                            </td>
+                            <td>
+                                @if ($loan->email_verified_at != null)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
+                            <td>
+                                @if ($loan->sms_verified_at != null)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td> --}}
+                            <td class="text-center">
+                                <span class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown">
+                                        {{ _lang('Action') }}
+                                    </button>
+                                    <form action="{{ action('LoanController@destroy', $id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        <input name="_method" type="hidden" value="DELETE">
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a href="{{ action('LoanController@edit', $id) }}"
+                                                data-title="{{ _lang('Update User') }}"
+                                                class="dropdown-item ajax-modal"><i class="icofont-ui-edit"></i>
+                                                {{ _lang('Edit') }}</a>
+                                            <a href="{{ action('LoanController@show', $id) }}"
+                                                data-title="{{ _lang('View User') }}"
+                                                class="dropdown-item ajax-modal"><i class="icofont-eye-alt"></i>
+                                                {{ _lang('View') }}</a>
+                                            <button class="btn-remove dropdown-item" type="submit"><i
+                                                    class="icofont-trash"></i> {{ _lang('Delete') }}</button>
+                                        </div>
+                                    </form>
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
 					</thead>
 					<tbody>
 					</tbody>
