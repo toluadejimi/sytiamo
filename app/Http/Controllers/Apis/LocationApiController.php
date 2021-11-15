@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Branch;
 
-
-
-
-class UserApiController extends Controller
+class LocationApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return Branch::all();
     }
 
     /**
@@ -41,14 +38,13 @@ class UserApiController extends Controller
     {
         //
         $request->validate([
-            'name'            => 'required|max:255',
-            'email'           => 'nullable|email|unique:users|max:255',
-            'branch_id'       => 'required',
-            'status'          => 'required',
-            'profile_picture' => 'nullable|image',
-            'password'        => 'nullable|min:6',
+            'name'          => '',
+            'contact_email' => 'nullable|email',
+            'contact_phone' => '',
+            'address'       => '',
+            'descriptions'  => '',
         ]);
-        return User::create($request->all());
+        return Branch::create($request->all());
     }
 
     /**
@@ -83,9 +79,9 @@ class UserApiController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user->update($request->all());
-        return $user;
+        $location = Branch::find($id);
+        $location->update($request->all());
+        return $location;
     }
 
     /**
@@ -97,11 +93,5 @@ class UserApiController extends Controller
     public function destroy($id)
     {
         //
-        return User::destroy($id);
-    }
-    public function search($name)
-    {
-        //
-        return User::where('name', 'like', '%'.$name.'%')->get();
     }
 }

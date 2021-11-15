@@ -23,7 +23,7 @@ class LoanProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $loanproducts = LoanProduct::all()->sortByDesc("id");
+        $loanproducts = LoanProduct::all()->sortByDesc("id"); 
         return view('backend.loan_product.list', compact('loanproducts'));
     }
 

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Apis\UserApiController;
-use App\Http\Controllers\SystemUserController;
+use App\Http\Controllers\Apis\LoginApiController;
+use App\Http\Controllers\Apis\LoanProductApiController;
+use App\Http\Controllers\Apis\LoanrepaymentApiController;
+use App\Http\Controllers\Apis\LocationApiController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/userapi', Apis\UserApiController::class);
 Route::get('/userapi/search/{name}', [UserApiController::class, 'search']);
-// Route::post('/userapi', [UserApiController::class, 'store']);
-// Route::get('/api', [ApiController::class, 'transaction']);
-// Route::post('/api', [ApiController::class, 'index']);
+Route::post('/login', [LoginApiController::class, 'login']);
+Route::get('/loanproduct', [LoanProductApiController::class, 'loanproduct']);
+Route::get('/loans', [LoanProductApiController::class, 'loans']);
+Route::resource('/loanrepay', Apis\LoanrepaymentApiController::class);
+Route::resource('/location', Apis\LocationApiController::class);
+Route::post('/createloan', [LoanProductApiController::class, 'createloan']);
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

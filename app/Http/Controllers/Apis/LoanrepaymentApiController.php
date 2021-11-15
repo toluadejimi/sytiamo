@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\LoanRepayment;
 
 
-
-
-class UserApiController extends Controller
+class LoanrepaymentApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,8 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return User::all();
+        //
+        return LoanRepayment::all();
     }
 
     /**
@@ -40,15 +39,6 @@ class UserApiController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name'            => 'required|max:255',
-            'email'           => 'nullable|email|unique:users|max:255',
-            'branch_id'       => 'required',
-            'status'          => 'required',
-            'profile_picture' => 'nullable|image',
-            'password'        => 'nullable|min:6',
-        ]);
-        return User::create($request->all());
     }
 
     /**
@@ -83,9 +73,9 @@ class UserApiController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user->update($request->all());
-        return $user;
+        $repay = LoanRepayment::find($id);
+        $repay->update($request->all());
+        return $repay;
     }
 
     /**
@@ -97,11 +87,5 @@ class UserApiController extends Controller
     public function destroy($id)
     {
         //
-        return User::destroy($id);
-    }
-    public function search($name)
-    {
-        //
-        return User::where('name', 'like', '%'.$name.'%')->get();
     }
 }

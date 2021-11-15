@@ -33,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail {
         'gname2',
         'gphone2',
         'gaddress2',
+        'nimc_front',
+        'nimc_back',
         'profile_picture',
     ];
 

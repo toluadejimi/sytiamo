@@ -34,7 +34,7 @@
 								<select class="form-control auto-select select2" data-selected="{{ old('borrower_id') }}" name="borrower_id" id="borrower_id" required>
 									<option value="">{{ _lang('Select One') }}</option>
 									@foreach(get_table('users',array('user_type='=>'customer')) as $user )
-										<option value="{{ $user->id }}">{{ $user->email .' ('. $user->name . ')' }}</option>
+										<option value="{{ $user->id }}">{{   $user->name  }}</option>
 									@endforeach
 								</select>
 							</div>

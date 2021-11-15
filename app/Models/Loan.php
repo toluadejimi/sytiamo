@@ -13,6 +13,18 @@ class Loan extends Model {
      */
     protected $table = 'loans';
 
+    protected $fillable = [
+            'loan_id',
+            'loan_product_id',       
+            'borrower_id',       
+            'currency_id',           
+            'first_payment_date',     
+            'release_date',    
+            'applied_amount',
+            'late_payment_penalties',
+            'attachment',
+    ];
+
     public function borrower() {
         return $this->belongsTo('App\Models\User', 'borrower_id')->withDefault();
     }

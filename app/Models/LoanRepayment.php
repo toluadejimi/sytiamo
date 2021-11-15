@@ -12,6 +12,10 @@ class LoanRepayment extends Model {
      */
     protected $table = 'loan_repayments';
 
+    protected $fillable = [
+        'status',
+];
+
     public function loan() {
         return $this->belongsTo('App\Models\Loan', 'loan_id')->withDefault();
     }
