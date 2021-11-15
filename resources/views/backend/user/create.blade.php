@@ -28,7 +28,7 @@
                                 <label class="col-xl-3 col-form-label">{{ _lang('Email') }}</label>
                                 <div class="col-xl-9">
                                     <input type="text" class="form-control" name="email" value="{{ old('email') }}"
-                                        required>
+                                        >
                                 </div>
                             </div>
                             

@@ -12,4 +12,12 @@ class Branch extends Model
      * @var string
      */
     protected $table = 'branches';
+    
+    protected $fillable = [
+        'name'          ,
+        'contact_email' ,
+        'contact_phone' ,
+        'address'       ,
+        'descriptions'  ,
+    ];
 }
