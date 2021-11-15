@@ -3,7 +3,7 @@
 use App\Http\Controllers\Apis\UserApiController;
 use App\Http\Controllers\Apis\LoginApiController;
 use App\Http\Controllers\Apis\LoanProductApiController;
-
+use App\Http\Controllers\Apis\LoanrepaymentApiController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +24,7 @@ Route::get('/userapi/search/{name}', [UserApiController::class, 'search']);
 Route::post('/login', [LoginApiController::class, 'login']);
 Route::get('/loanproduct', [LoanProductApiController::class, 'loanproduct']);
 Route::get('/loans', [LoanProductApiController::class, 'loans']);
+Route::resource('/loanrepay', Apis\LoanrepaymentApiController::class);
 Route::post('/createloan', [LoanProductApiController::class, 'createloan']);
 
 

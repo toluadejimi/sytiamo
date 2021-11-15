@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LoanProduct;
 use App\Models\Loan;
+use App\Models\LoanRepayment;
 
 
 class LoanProductApiController extends Controller
@@ -36,4 +37,22 @@ class LoanProductApiController extends Controller
         ]);
         return Loan::create($request->all());
     }
+
+    // public function loanrepay()
+    // {
+    //     return LoanRepayment::all();
+    // }
+
+    // public function edit($id)
+    // {
+    //     //
+    // }
+    
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    //     $repay = LoanRepayment::find($id);
+    //     $repay->update($request->all());
+    //     return $repay;
+    // }
 }
