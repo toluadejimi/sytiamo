@@ -45,11 +45,13 @@
                         </tr>
                         @foreach ($users as $user)
                         <tr>
+                            
                             <td class="text-center">#</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->branch->name }}</td>
+                            
                             <td>
                                 @if ($user->status != 0)
                                     Active

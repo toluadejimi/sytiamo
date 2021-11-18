@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\LoanRepayment;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Http\Response;
 
-
-class LoanrepaymentApiController extends Controller
+class VerificationApiController extends Controller
 {
+
+    //public $bvn = '';
     public $successStatus = true;
     public $failedStatus = false;
 
@@ -21,14 +23,6 @@ class LoanrepaymentApiController extends Controller
     public function index()
     {
         //
-        $repay = LoanRepayment::all();
-        if ($this->successStatus == true) {
-            return response()->json(["status" => $this->successStatus, $repay])
-    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
-        }else{
-            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
-        }
-
     }
 
     /**
@@ -84,15 +78,6 @@ class LoanrepaymentApiController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $repay = LoanRepayment::find($id);
-        $repay->update($request->all());
-        return $repay;
-        if ($this->successStatus == true) {
-            return response()->json(["status" => $this->successStatus, $repay])
-    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
-        }else{
-            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
-        }
     }
 
     /**
@@ -104,5 +89,39 @@ class LoanrepaymentApiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verify()
+    {
+
+        $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.flutterwave.com/v3/kyc/bvns/{$bvn}',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+        'Accept: application/json',
+        'Authorization: Bearer FLWSECK-7216dd661e4770b326971d65db1025b9-X'
+    ),
+    ));
+
+    $bvn = '12345678019';
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    //return $response;
+
+    if ($response == 200) {
+        return response()->json(["status" => $this->successStatus, $loanproduct])
+->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+    }else{
+        return response()->json(["status" => $this->failedStatus,'error' => 'Verification Failed'], 401);
+    }
     }
 }

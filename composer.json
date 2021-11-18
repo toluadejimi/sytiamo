@@ -19,6 +19,7 @@
     "laravel/sanctum": "^2.12",
     "laravel/tinker": "^2.0",
     "laravel/ui": "^3.0",
+    "nesbot/carbon": "^2.54",
     "paypal/paypal-checkout-sdk": "1.0.1",
     "razorpay/razorpay": "2.*",
     "stripe/stripe-php": "^7.94",

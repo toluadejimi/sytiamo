@@ -16,19 +16,25 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-12">
                             <div class="form-group row">
-                                <label class="col-xl-3 col-form-label">{{ _lang('Name') }}</label>
+                                <label class="col-xl-3 col-form-label">{{ _lang('First Name') }}</label>
                                 <div class="col-xl-9">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                    <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}"
                                         required>
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-form-label">{{ _lang('Middle Name') }}</label>
+                                <div class="col-xl-9">
+                                    <input type="text" class="form-control" name="middile_name" value="{{ old('middle_name') }}"
+                                        >
+                                </div>
+                            </div>
 
                             <div class="form-group row">
-                                <label class="col-xl-3 col-form-label">{{ _lang('Email') }}</label>
+                                <label class="col-xl-3 col-form-label">{{ _lang('Last Name') }}</label>
                                 <div class="col-xl-9">
-                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}"
-                                        >
+                                    <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}"
+                                       required >
                                 </div>
                             </div>
                             

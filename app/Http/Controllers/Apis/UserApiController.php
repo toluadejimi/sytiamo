@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Apis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Http\Response;
 
 
 
 class UserApiController extends Controller
 {
+
+    public $successStatus = true;
+    public $failedStatus = false;
+
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +22,16 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $user = User::all();
+        
+        if ($this->successStatus == true) {
+            return response()->json(["status" => $this->successStatus, $user])
+    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+        }else{
+            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,14 +53,21 @@ class UserApiController extends Controller
     {
         //
         $request->validate([
-            'name'            => 'required|max:255',
-            'email'           => 'nullable|email|unique:users|max:255',
+            'first_name'            => 'required|max:255',
+            'middle_name'           => 'nullable|max:255',
+            'last_name'           => 'required|max:255',
             'branch_id'       => 'required',
             'status'          => 'required',
             'profile_picture' => 'nullable|image',
-            'password'        => 'nullable|min:6',
+            //'password'        => 'nullable|min:6',
         ]);
-        return User::create($request->all());
+        $create = User::create($request->all());
+        if ($this->successStatus == true) {
+            return response()->json(["status" => $this->successStatus, $create])
+    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+        }else{
+            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
+        }
     }
 
     /**
@@ -85,7 +104,13 @@ class UserApiController extends Controller
         //
         $user = User::find($id);
         $user->update($request->all());
-        return $user;
+        //return $user;
+        if ($this->successStatus == true) {
+            return response()->json(["status" => $this->successStatus, $user])
+    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+        }else{
+            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
+        }
     }
 
     /**

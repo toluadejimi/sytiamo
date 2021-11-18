@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Apis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Branch;
+use Illuminate\Http\Response;
+
 
 class LocationApiController extends Controller
 {
+
+    public $successStatus = true;
+    public $failedStatus = false;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,13 @@ class LocationApiController extends Controller
      */
     public function index()
     {
-        return Branch::all();
+        $location = Branch::all();
+        if ($this->successStatus == true) {
+            return response()->json(["status" => $this->successStatus, $location])
+    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+        }else{
+            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
+        }
     }
 
     /**
@@ -44,7 +56,13 @@ class LocationApiController extends Controller
             'address'       => '',
             'descriptions'  => '',
         ]);
-        return Branch::create($request->all());
+        $create = Branch::create($request->all());
+        if ($this->successStatus == true) {
+            return response()->json(["status" => $this->successStatus, $create])
+    ->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+        }else{
+            return response()->json(["status" => $this->failedStatus,'error' => 'Unauthorised'], 401);
+        }
     }
 
     /**

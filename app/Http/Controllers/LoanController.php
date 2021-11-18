@@ -35,8 +35,15 @@ class LoanController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+
+        $start_date = Loan::where('approved_user_id', 1)->get('release_date');  
+        $date = strtotime($start_date);
+        $date = strtotime( $date);
+        $payments_date = date('d/m/Y', $date);
+
+
         $loans = Loan::all();
-        return view('backend.loan.list',compact('loans'));
+        return view('backend.loan.list',compact('loans','payments_date'));
     }
 
     public function get_table_data(Request $request) {
@@ -116,7 +123,7 @@ class LoanController extends Controller {
             'loan_product_id'        => 'required',
             'borrower_id'            => 'required',
             'currency_id'            => 'required',
-            'first_payment_date'     => 'required',
+            'first_payment_date'     => 'nullable',
             'release_date'           => 'required',
             'applied_amount'         => 'required|numeric',
             'late_payment_penalties' => 'required|numeric',
@@ -332,11 +339,10 @@ class LoanController extends Controller {
         $loan = Loan::find($id);
         if ($loan->status == 2) {
             return back()->with('error', _lang('Sorry, This Loan is already completed'));
-        }
-        if (!$request->ajax()) {
+        }elseif (!$request) {
             return view('backend.loan.edit', compact('loan', 'id'));
         } else {
-            return view('backend.loan.modal.edit', compact('loan', 'id'));
+            return view('backend.loan.edit', compact('loan', 'id'));
         }
 
     }

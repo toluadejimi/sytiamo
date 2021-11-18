@@ -59,7 +59,12 @@
 							<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">{{ _lang('First Payment Date') }}</label>
-								<input type="text" class="form-control datepicker" name="first_payment_date" value="{{ $loan->getRawOriginal('first_payment_date') }}" {{ $loan->status == 1 ? 'disabled' : 'required' }}>
+								<input type="text" class="form-control datepicker" name="first_payment_date" value=" @php
+								$start_date = $loan->release_date ;  
+							$date = strtotime($start_date);
+							$date = strtotime("+7 day", $date);
+							echo date('Y/m/d', $date);
+							@endphp" {{ $loan->status == 1 ? 'disabled' : 'required' }}>
 							</div>
 						</div>
 
